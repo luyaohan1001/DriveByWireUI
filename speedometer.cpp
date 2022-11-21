@@ -1,0 +1,34 @@
+#include "speedometer.h"
+#include <QObject>
+
+/**
+ * @brief Speedometer::Speedometer
+ * @param parent
+ */
+Speedometer::Speedometer(QObject *parent)
+    : 	QObject(parent),
+    currSpeed(10) {
+}
+
+/**
+ * @brief Speedometer::setSpeed
+ * @param speed to be set to.
+ */
+void Speedometer::setSpeed(qreal s) {
+    if (currSpeed == s) {
+        return;
+    }
+
+    this->currSpeed = s;
+
+    emit speedChangedSignal();
+}
+
+/**
+ * @brief Speedometer::getSpeed
+ * @return Current Speed.
+ */
+qreal Speedometer::getSpeed() {
+    return currSpeed;
+}
+
