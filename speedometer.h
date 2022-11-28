@@ -25,7 +25,7 @@ public:
     qreal getSpeed();
 
 signals:
-    void    speedChangedSignal();
+    void speedChangedSignal();
 
 private:
     qreal currSpeed;

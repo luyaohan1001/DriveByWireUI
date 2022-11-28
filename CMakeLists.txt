@@ -13,11 +13,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
         speedometer.cpp
         speedometer.h
+	udp_controller.cpp
+        udp_controller.h
         qml.qrc
 )
 
@@ -48,6 +51,7 @@ target_compile_definitions(DriveByWireUI
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(DriveByWireUI
   PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+# target_link_libraries(DriveByWireUI Qt5::Network)
 
 set_target_properties(DriveByWireUI PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

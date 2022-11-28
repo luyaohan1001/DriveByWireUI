@@ -19,12 +19,14 @@ Window {
     CircularGauge {
         objectName: "speedController";
 
-        value: accelerating ? maximumValue : 0
-        // value: speedometer.speedValue; /* The value can also be overwridden from the speedometer class. */
+        // value: accelerating ? maximumValue : 0
+        value: speedometer.speedValue; /* The value can also be overwridden from the speedometer class. */
 
         /* Location of the meter on the screen. */
         x: 400;
         y: 400;
+        width: 600;
+        height: 600;
 
         /* property... specifies a custom property. */
         property bool accelerating: false
