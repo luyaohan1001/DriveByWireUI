@@ -1,0 +1,23 @@
+#include "steeringwheel.h"
+
+SteeringWheel::SteeringWheel(QObject *parent)
+    : QObject{parent}
+{
+
+}
+
+void SteeringWheel::setSteeringPosition(qreal s)
+{
+    if (steeringPosition == s) {
+        return;
+    }
+
+    this->steeringPosition = s;
+
+    emit steeringPositionChangedSignal();
+}
+
+qreal SteeringWheel::getSteeringPosition()
+{
+    return this->steeringPosition;
+}

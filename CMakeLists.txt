@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network REQUIRED)
 
 set(PROJECT_SOURCES
@@ -21,6 +21,13 @@ set(PROJECT_SOURCES
         speedometer.h
 	udp_controller.cpp
         udp_controller.h
+        blinkers.cpp
+        blinkers.h
+	brakes.cpp
+        brakes.h
+        steeringwheel.cpp
+        steeringwheel.h
+        elements.qrc
         qml.qrc
 )
 
@@ -65,3 +72,4 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_import_qml_plugins(DriveByWireUI)
     qt_finalize_executable(DriveByWireUI)
 endif()
+

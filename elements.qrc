@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>media/elements/engineStartSound.mp3</file>
+        <file>media/elements/Tire_Pressure.png</file>
+        <file>media/elements/Temperature_Pressure.png</file>
+        <file>media/elements/Power_Steering_Warning.png</file>
+        <file>media/elements/Engine_Warning.png</file>
+        <file>media/elements/Engine_Oil_Warning.png</file>
+        <file>media/elements/DPF_Warning.png</file>
+        <file>media/elements/Brake_Warning.png</file>
+        <file>media/elements/Battery_Warning.png</file>
+        <file>media/elements/Airbag_Warning.png</file>
+        <file>media/elements/Car_Diagnostic.jpg</file>
+        <file>media/elements/UI_Background.jpg</file>
+        <file>media/elements/Right_Blinker.jpeg</file>
+        <file>media/elements/Right_Blinker.jpg</file>
+        <file>media/elements/Left_Blinker.png</file>
+        <file>media/elements/Right_Blinker.png</file>
+        <file>media/elements/Steering_Wheel.png</file>
+        <file>media/elements/Hazard_Light.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,20 @@
+#include "brakes.h"
+
+Brakes::Brakes(QObject* parent)
+    : QObject{parent}
+
+{
+  this->brakesState = false;
+}
+
+void Brakes::setBrakesState(bool s) {
+  if (brakesState == s) {
+    return;
+  }
+
+  this->brakesState = s;
+
+  emit brakesChangedSignal();
+}
+
+bool Brakes::getBrakesState() { return this->brakesState; }
