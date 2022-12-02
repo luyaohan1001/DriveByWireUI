@@ -3,6 +3,16 @@
 #include <QDebug>
 #include <QNetworkDatagram>
 #include <QUdpSocket>
+#include <stdbool.h>
+#include <stdint.h>
+
+// Button Debounce
+
+uint16_t global_tick = 0;
+uint16_t left_debounce = 0;
+uint16_t right_debounce = 0;
+uint16_t emergency_debounce = 0;
+uint16_t debounce_margin = 3;
 
 /**
  * @brief UDP_Controller::UDP_Controller Constructor
@@ -60,9 +70,31 @@ void UDP_Controller::steeringTurnActionSenseLogic() {
 }
 
 void UDP_Controller::latchPressToBlinkerStates() {
-    bool leftBlinkerPressed = (receivedDataPacket.rgbButtons[9] == 0) ? false : true;
-    bool rightBlinkerPressed = (receivedDataPacket.rgbButtons[8] == 0) ? false : true;
-    bool emergentBlinkerPressed = (receivedDataPacket.rgbButtons[7] == 0) ? false : true;
+
+    global_tick++;
+    /*
+    static bool leftBlinkerPressed = (receivedDataPacket.rgbButtons[9] == 0) ? false : true;
+    static bool rightBlinkerPressed = (receivedDataPacket.rgbButtons[8] == 0) ? false : true;
+    static bool emergentBlinkerPressed = (receivedDataPacket.rgbButtons[7] == 0) ? false : true;
+    */
+
+    bool leftBlinkerPressed, rightBlinkerPressed, emergentBlinkerPressed;
+
+    if (global_tick - left_debounce >= debounce_margin) {
+      leftBlinkerPressed = (receivedDataPacket.rgbButtons[9] == 0) ? false : true;
+      left_debounce = global_tick;
+
+    }
+    if (global_tick - right_debounce >= debounce_margin) {
+      rightBlinkerPressed = (receivedDataPacket.rgbButtons[8] == 0) ? false : true;
+      right_debounce = global_tick;
+
+    }
+    if (global_tick - emergency_debounce >= debounce_margin) {
+      emergentBlinkerPressed = (receivedDataPacket.rgbButtons[7] == 0) ? false : true;
+      emergency_debounce = global_tick;
+
+    }
 
     /* EMERGENT Blinker PRESSED. LEFT/RIGHT Blinker don't care. */
     if (emergentBlinkerPressed == true) {
